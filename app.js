@@ -3,6 +3,7 @@
   const TASKS_STORE = "cal2026_tasks_v1";
   const DONE_STORE = "cal2026_done_v1";
   const MIGRATED_FLAG = "cal2026_migrated_v1";
+  const HIDDEN_MONTHS_STORE = "cal2026_hiddenMonths_v1";
 
   const weekPctState = new Map();
   let lastOverallPct = null;
@@ -92,6 +93,102 @@
     } catch {
       return fallback;
     }
+  }
+
+  function loadHiddenMonths() {
+    const raw = localStorage.getItem(HIDDEN_MONTHS_STORE);
+    const parsed = safeJsonParse(raw || "", []);
+    return Array.isArray(parsed) ? parsed.filter((x) => typeof x === "string") : [];
+  }
+
+  function saveHiddenMonths(keys) {
+    localStorage.setItem(HIDDEN_MONTHS_STORE, JSON.stringify(keys));
+  }
+
+  function monthKeyFromYearMonth(year, month) {
+    return `${year}-${pad2(month)}`;
+  }
+
+  function monthKeyFromMonthNameText(text) {
+    if (!text) return null;
+    const parts = String(text).trim().split(/\s+/);
+    const monthName = parts[0];
+    const year = Number(parts[1]);
+    const month = MONTH_NUM[monthName];
+    if (!year || !month) return null;
+    return monthKeyFromYearMonth(year, month);
+  }
+
+  function getMonthKeyFromMonthSec(monthSec) {
+    const labelText = monthSec
+      ?.querySelector(".month-name")
+      ?.textContent?.trim();
+    return monthKeyFromMonthNameText(labelText);
+  }
+
+  function applyHiddenMonthsToDom() {
+    const hidden = new Set(loadHiddenMonths());
+    document.querySelectorAll(".month-sec").forEach((sec) => {
+      const key = getMonthKeyFromMonthSec(sec);
+      if (key && hidden.has(key)) sec.remove();
+    });
+  }
+
+  function removeMonth(monthSec) {
+    const key = monthSec?.dataset?.monthKey || getMonthKeyFromMonthSec(monthSec);
+    if (!key) return;
+
+    if (!confirm(`Remove ${key} from the calendar view? This keeps your tasks saved, but hides that month on reload.`)) {
+      return;
+    }
+
+    const hidden = new Set(loadHiddenMonths());
+    hidden.add(key);
+    saveHiddenMonths(Array.from(hidden).sort());
+
+    monthSec.remove();
+    dayIndex = buildDayIndex();
+    render();
+  }
+
+  function ensureMonthRemoveButtons() {
+    document.querySelectorAll(".month-sec").forEach((sec) => {
+      const key = getMonthKeyFromMonthSec(sec);
+      if (!key) return;
+      sec.dataset.monthKey = key;
+
+      const label = sec.querySelector(".month-label");
+      if (!label) return;
+
+      let btn = label.querySelector(".month-remove-btn");
+      if (btn) return;
+
+      btn = document.createElement("button");
+      btn.type = "button";
+      btn.className = "month-remove-btn";
+      btn.textContent = "Remove month";
+      btn.hidden = true;
+      btn.addEventListener("click", () => removeMonth(sec));
+      label.appendChild(btn);
+    });
+  }
+
+  function updateMonthRemoveButtons() {
+    document.querySelectorAll(".month-sec").forEach((sec) => {
+      const key = sec.dataset.monthKey || getMonthKeyFromMonthSec(sec);
+      const btn = sec.querySelector(".month-remove-btn");
+      if (!key || !btn) return;
+
+      const monthTasks = tasks.filter(
+        (t) => typeof t.start === "string" && t.start.startsWith(key + "-"),
+      );
+      const total = monthTasks.length;
+      const done = monthTasks.filter((t) => Boolean(doneMap[t.id])).length;
+      const complete = total > 0 && done === total;
+
+      btn.hidden = !complete;
+      btn.disabled = !complete;
+    });
   }
 
   function loadTasks() {
@@ -270,6 +367,8 @@
   }
 
   function updateProgress() {
+    ensureMonthRemoveButtons();
+
     const getWeekIdForTask = (task) => dayIndex.get(task.start)?.weekId;
 
     document.querySelectorAll(".week").forEach((w) => {
@@ -330,6 +429,8 @@
       celebrate();
     }
     lastOverallPct = pct;
+
+    updateMonthRemoveButtons();
   }
 
   function celebrate() {
@@ -456,6 +557,10 @@
   }
 
   function addMonth(year, month) {
+    const hidden = new Set(loadHiddenMonths());
+    const monthKey = monthKeyFromYearMonth(year, month);
+    if (hidden.has(monthKey)) return;
+
     const monthName = MONTHS_FULL[month - 1];
     const daysInMonth = new Date(Date.UTC(year, month, 0)).getUTCDate();
 
@@ -480,6 +585,8 @@
     label.appendChild(line);
     label.appendChild(tag);
     monthSec.appendChild(label);
+
+    monthSec.dataset.monthKey = monthKey;
 
     const secondSaturday = getSecondSaturdayDay(year, month);
 
@@ -587,6 +694,9 @@
     } else {
       dlSection.parentElement.insertBefore(monthSec, dlSection);
     }
+
+    ensureMonthRemoveButtons();
+    updateMonthRemoveButtons();
   }
 
   function addNextMonth() {
@@ -707,6 +817,7 @@
   }
 
   function init() {
+    applyHiddenMonthsToDom();
     dayIndex = buildDayIndex();
 
     // Migrate checkbox state if needed

@@ -1,0 +1,1334 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Project Calendar — April & May 2026</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="burst" id="burst">🎉</div>
+
+    <div class="container">
+      <div class="header">
+        <div class="brand">Drakon Sports</div>
+        <div class="eyebrow">Project Execution Plan</div>
+        <h1>April &amp; May 2026</h1>
+        <p class="header-sub">
+          Cricket brand task calendar — check off tasks as you go. Progress
+          saves automatically.
+        </p>
+      </div>
+
+      <!-- OVERALL PROGRESS -->
+      <div class="progress-card">
+        <div class="progress-top">
+          <div>
+            <div class="progress-title">
+              Overall Progress <small id="done-count">0 / 0 tasks done</small>
+            </div>
+            <div class="pmeta">
+              <div class="pmeta-item">
+                <div class="pmeta-dot" style="background: var(--high)"></div>
+                <span id="high-done">0/0 High</span>
+              </div>
+              <div class="pmeta-item">
+                <div class="pmeta-dot" style="background: var(--mod)"></div>
+                <span id="mod-done">0/0 Moderate</span>
+              </div>
+              <div class="pmeta-item">
+                <div class="pmeta-dot" style="background: var(--low)"></div>
+                <span id="low-done">0/0 Low</span>
+              </div>
+            </div>
+          </div>
+          <div class="progress-pct" id="overall-pct">0%</div>
+        </div>
+        <div class="bar-wrap">
+          <div class="bar-fill" id="overall-bar" style="width: 0%"></div>
+        </div>
+        <button class="reset-btn" onclick="resetAll()">
+          ↺ Reset all checkboxes
+        </button>
+
+        <div class="actions">
+          <button class="action-btn" id="add-month-btn" type="button">
+            ＋ Add next month
+          </button>
+          <button class="action-btn" id="add-task-btn" type="button">
+            ＋ Add new task
+          </button>
+        </div>
+      </div>
+
+      <!-- STATS -->
+      <div class="stats">
+        <div class="stat">
+          <div class="stat-num" style="color: var(--high)">7</div>
+          <div class="stat-label">High Priority</div>
+        </div>
+        <div class="stat">
+          <div class="stat-num" style="color: var(--mod)">5</div>
+          <div class="stat-label">Moderate Priority</div>
+        </div>
+        <div class="stat">
+          <div class="stat-num" style="color: var(--low)">3</div>
+          <div class="stat-label">Low Priority</div>
+        </div>
+        <div class="stat">
+          <div class="stat-num" style="color: var(--accent2)">12</div>
+          <div class="stat-label">Key Deadlines</div>
+        </div>
+      </div>
+
+      <!-- LEGEND -->
+      <div class="legend">
+        <span class="legend-t">Legend</span>
+        <div class="l-item">
+          <div class="l-dot" style="background: var(--high)"></div>
+          High priority
+        </div>
+        <div class="l-item">
+          <div class="l-dot" style="background: var(--mod)"></div>
+          Moderate priority
+        </div>
+        <div class="l-item">
+          <div class="l-dot" style="background: var(--low)"></div>
+          Low priority
+        </div>
+        <div class="l-item">
+          <span
+            class="l-pill"
+            style="
+              background: var(--dl-bg);
+              color: #ffa5a5;
+              border-color: var(--dl-border);
+            "
+            >★ DEADLINE</span
+          >Final deadline
+        </div>
+        <div class="l-item">
+          <div class="l-dot" style="background: var(--surface3)"></div>
+          OFF day
+        </div>
+      </div>
+
+      <!-- ══ APRIL ══ -->
+      <div class="month-sec">
+        <div class="month-label">
+          <div
+            class="month-name"
+            style="
+              background: linear-gradient(90deg, #a78bfa, #6c63ff);
+              -webkit-background-clip: text;
+              -webkit-text-fill-color: transparent;
+              background-clip: text;
+            "
+          >
+            April 2026
+          </div>
+          <div class="month-line"></div>
+          <div class="month-tag">Apr 13 – Apr 30</div>
+        </div>
+
+        <!-- W1 -->
+        <div class="week" data-week="w1">
+          <div class="week-hdr">
+            <div class="week-hdr-left">
+              <span class="week-title">Week 1 — Apr 13–18</span
+              ><span class="week-theme"
+                >Kick-off: stock audit &amp; sales recovery</span
+              >
+            </div>
+            <div class="week-prog">
+              <div class="wbar-out">
+                <div class="wbar-in" id="wb-w1" style="width: 0%"></div>
+              </div>
+              <span class="wpct" id="wp-w1">0%</span>
+            </div>
+          </div>
+          <div class="day-row">
+            <div class="day-info">
+              <span class="dname">Mon</span><span class="dnum">13</span>
+            </div>
+            <div class="day-tasks">
+              <label class="tl h"
+                ><input type="checkbox" data-week="w1" data-pri="h" />
+                <div class="cb-zone">
+                  <div class="cb-box"><div class="cb-tick"></div></div>
+                </div>
+                <span class="tt"
+                  >Bats &amp; ball stock count &amp; document inventory</span
+                ></label
+              >
+              <label class="tl h"
+                ><input type="checkbox" data-week="w1" data-pri="h" />
+                <div class="cb-zone">
+                  <div class="cb-box"><div class="cb-tick"></div></div>
+                </div>
+                <span class="tt"
+                  >Sales drop — pull data from Amazon, Flipkart &amp;
+                  website</span
+                ></label
+              >
+            </div>
+          </div>
+          <div class="day-row">
+            <div class="day-info">
+              <span class="dname">Tue</span><span class="dnum">14</span>
+            </div>
+            <div class="day-tasks">
+              <label class="tl h"
+                ><input type="checkbox" data-week="w1" data-pri="h" />
+                <div class="cb-zone">
+                  <div class="cb-box"><div class="cb-tick"></div></div>
+                </div>
+                <span class="tt"
+                  >Stock report — identify gaps, overstock &amp; reorder
+                  needs</span
+                ></label
+              >
+              <label class="tl h"
+                ><input type="checkbox" data-week="w1" data-pri="h" />
+                <div class="cb-zone">
+                  <div class="cb-box"><div class="cb-tick"></div></div>
+                </div>
+                <span class="tt"
+                  >Sales drop — identify root causes (pricing, listing,
+                  ads)</span
+                ></label
+              >
+            </div>
+          </div>
+          <div class="day-row">
+            <div class="day-info">
+              <span class="dname">Wed</span><span class="dnum">15</span>
+            </div>
+            <div class="day-tasks">
+              <label class="tl h"
+                ><input type="checkbox" data-week="w1" data-pri="h" />
+                <div class="cb-zone">
+                  <div class="cb-box"><div class="cb-tick"></div></div>
+                </div>
+                <span class="tt"
+                  >Sales recovery strategy — draft full action plan</span
+                ></label
+              >
+              <label class="tl h"
+                ><input type="checkbox" data-week="w1" data-pri="h" />
+                <div class="cb-zone">
+                  <div class="cb-box"><div class="cb-tick"></div></div>
+                </div>
+                <span class="tt"
+                  >Influencer Excel — define columns, start compiling names
+                  &amp; handles</span
+                ></label
+              >
+            </div>
+          </div>
+          <div class="day-row">
+            <div class="day-info">
+              <span class="dname">Thu</span><span class="dnum">16</span>
+            </div>
+            <div class="day-tasks">
+              <label class="tl h"
+                ><input type="checkbox" data-week="w1" data-pri="h" />
+                <div class="cb-zone">
+                  <div class="cb-box"><div class="cb-tick"></div></div>
+                </div>
+                <span class="tt"
+                  >Sales recovery strategy — finalize &amp; share for team
+                  review</span
+                ></label
+              >
+              <label class="tl h"
+                ><input type="checkbox" data-week="w1" data-pri="h" />
+                <div class="cb-zone">
+                  <div class="cb-box"><div class="cb-tick"></div></div>
+                </div>
+                <script src="app.js" defer></script>
+            "
+          >
+            May 2026
+          </div>
+          <div class="month-line"></div>
+          <div class="month-tag">May 1 – May 23</div>
+        </div>
+
+        <!-- W4 -->
+        <div class="week" data-week="w4">
+          <div class="week-hdr">
+            <div class="week-hdr-left">
+              <span class="week-title">Week 4 — May 1–2</span
+              ><span class="week-theme">Bat series launch push</span>
+            </div>
+            <div class="week-prog">
+              <div class="wbar-out">
+                <div class="wbar-in" id="wb-w4" style="width: 0%"></div>
+              </div>
+              <span class="wpct" id="wp-w4">0%</span>
+            </div>
+          </div>
+          <div class="day-row">
+            <div class="day-info">
+              <span class="dname">Fri</span><span class="dnum">1</span>
+            </div>
+            <div class="day-tasks">
+              <label class="tl dl"
+                ><input type="checkbox" data-week="w4" data-pri="h" />
+                <div class="cb-zone">
+                  <div class="cb-box"><div class="cb-tick"></div></div>
+                </div>
+                <span class="tt"
+                  >DEADLINE: All engraved bat listings LIVE</span
+                ></label
+              >
+              <label class="tl h"
+                ><input type="checkbox" data-week="w4" data-pri="h" />
+                <div class="cb-zone">
+                  <div class="cb-box"><div class="cb-tick"></div></div>
+                </div>
+                <span class="tt"
+                  >Bat series — Engraved series listing finalized</span
+                ></label
+              >
+              <label class="tl m"
+                ><input type="checkbox" data-week="w4" data-pri="m" />
+                <div class="cb-zone">
+                  <div class="cb-box"><div class="cb-tick"></div></div>
+                </div>
+                <span class="tt"
+                  >Pure Willow listing — draft listing content (title, bullets,
+                  desc)</span
+                ></label
+              >
+            </div>
+          </div>
+          <div class="day-row">
+            <div class="day-info">
+              <span class="dname">Sat</span><span class="dnum">2</span>
+            </div>
+            <div class="day-tasks">
+              <label class="tl h"
+                ><input type="checkbox" data-week="w4" data-pri="h" />
+                <div class="cb-zone">
+                  <div class="cb-box"><div class="cb-tick"></div></div>
+                </div>
+                <span class="tt"
+                  >Bat series — Sticker + Engraving: finalize listing
+                  content</span
+                ></label
+              >
+            </div>
+          </div>
+        </div>
+
+        <!-- W5 -->
+        <div class="week" data-week="w5">
+          <div class="week-hdr">
+            <div class="week-hdr-left">
+              <span class="week-title">Week 5 — May 3–9</span
+              ><span class="week-theme"
+                >All 3 series launched, images &amp; digital strategy</span
+              >
+            </div>
+            <div class="week-prog">
+              <div class="wbar-out">
+                <div class="wbar-in" id="wb-w5" style="width: 0%"></div>
+              </div>
+              <span class="wpct" id="wp-w5">0%</span>
+            </div>
+          </div>
+          <div class="day-row off-row">
+            <div class="day-info off-d">
+              <span class="dname">Sun</span><span class="dnum">3</span>
+            </div>
+            <div class="day-tasks off-t">
+              <span class="off-text">OFF — Sunday</span>
+            </div>
+          </div>
+          <div class="day-row">
+            <div class="day-info">
+              <span class="dname">Mon</span><span class="dnum">4</span>
+            </div>
+            <div class="day-tasks">
+              <label class="tl dl"
+                ><input type="checkbox" data-week="w5" data-pri="h" />
+                <div class="cb-zone">
+                  <div class="cb-box"><div class="cb-tick"></div></div>
+                </div>
+                <span class="tt"
+                  >DEADLINE: All 3 bat series listed &amp; LAUNCHED</span
+                ></label
+              >
+              <label class="tl h"
+                ><input type="checkbox" data-week="w5" data-pri="h" />
+                <div class="cb-zone">
+                  <div class="cb-box"><div class="cb-tick"></div></div>
+                </div>
+                <span class="tt"
+                  >Academies calling — batch 3 + follow-ups</span
+                ></label
+              >
+              <label class="tl m"
+                ><input type="checkbox" data-week="w5" data-pri="m" />
+                <div class="cb-zone">
+                  <div class="cb-box"><div class="cb-tick"></div></div>
+                </div>
+                <span class="tt"
+                  >Pending images — audit all missing product images</span
+                ></label
+              >
+            </div>
+          </div>
+          <div class="day-row">
+            <div class="day-info">
+              <span class="dname">Tue</span><span class="dnum">5</span>
+            </div>
+            <div class="day-tasks">
+              <label class="tl m"
+                ><input type="checkbox" data-week="w5" data-pri="m" />
+                <div class="cb-zone">
+                  <div class="cb-box"><div class="cb-tick"></div></div>
+                </div>
+                <span class="tt"
+                  >Pending images — shoot/source batch 1 (priority SKUs)</span
+                ></label
+              >
+              <label class="tl m"
+                ><input type="checkbox" data-week="w5" data-pri="m" />
+                <div class="cb-zone">
+                  <div class="cb-box"><div class="cb-tick"></div></div>
+                </div>
+                <span class="tt"
+                  >Digital marketing — draft improvement plan (SEO, paid,
+                  social)</span
+                ></label
+              >
+            </div>
+          </div>
+          <div class="day-row">
+            <div class="day-info">
+              <span class="dname">Wed</span><span class="dnum">6</span>
+            </div>
+            <div class="day-tasks">
+              <label class="tl m"
+                ><input type="checkbox" data-week="w5" data-pri="m" />
+                <div class="cb-zone">
+                  <div class="cb-box"><div class="cb-tick"></div></div>
+                </div>
+                <span class="tt"
+                  >Pending images — shoot/source batch 2</span
+                ></label
+              >
+              <label class="tl m"
+                ><input type="checkbox" data-week="w5" data-pri="m" />
+                <div class="cb-zone">
+                  <div class="cb-box"><div class="cb-tick"></div></div>
+                </div>
+                <span class="tt"
+                  >Digital marketing — finalize strategy &amp; share for
+                  approval</span
+                ></label
+              >
+            </div>
+          </div>
+          <div class="day-row">
+            <div class="day-info">
+              <span class="dname">Thu</span><span class="dnum">7</span>
+            </div>
+            <div class="day-tasks">
+              <label class="tl m"
+                ><input type="checkbox" data-week="w5" data-pri="m" />
+                <div class="cb-zone">
+                  <div class="cb-box"><div class="cb-tick"></div></div>
+                </div>
+                <span class="tt"
+                  >Pending images — upload all completed images to
+                  listings</span
+                ></label
+              >
+              <label class="tl dl"
+                ><input type="checkbox" data-week="w5" data-pri="m" />
+                <div class="cb-zone">
+                  <div class="cb-box"><div class="cb-tick"></div></div>
+                </div>
+                <span class="tt"
+                  >DEADLINE: Digital marketing improvement strategy
+                  approved</span
+                ></label
+              >
+            </div>
+          </div>
+          <div class="day-row">
+            <div class="day-info">
+              <span class="dname">Fri</span><span class="dnum">8</span>
+            </div>
+            <div class="day-tasks">
+              <label class="tl dl"
+                ><input type="checkbox" data-week="w5" data-pri="m" />
+                <div class="cb-zone">
+                  <div class="cb-box"><div class="cb-tick"></div></div>
+                </div>
+                <span class="tt"
+                  >DEADLINE: All pending images complete &amp; uploaded</span
+                ></label
+              >
+              <label class="tl m"
+                ><input type="checkbox" data-week="w5" data-pri="m" />
+                <div class="cb-zone">
+                  <div class="cb-box"><div class="cb-tick"></div></div>
+                </div>
+                <span class="tt"
+                  >Pure Willow listing — approval received, go live</span
+                ></label
+              >
+              <label class="tl h"
+                ><input type="checkbox" data-week="w5" data-pri="h" />
+                <div class="cb-zone">
+                  <div class="cb-box"><div class="cb-tick"></div></div>
+                </div>
+                <span class="tt"
+                  >Academies calling — batch 4 + track responses</span
+                ></label
+              >
+            </div>
+          </div>
+          <div class="day-row off-row">
+            <div class="day-info off-d">
+              <span class="dname">Sat</span><span class="dnum">9</span>
+            </div>
+            <div class="day-tasks off-t">
+              <span class="off-text">OFF — 2nd Saturday</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- W6 -->
+        <div class="week" data-week="w6">
+          <div class="week-hdr">
+            <div class="week-hdr-left">
+              <span class="week-title">Week 6 — May 10–16</span
+              ><span class="week-theme"
+                >Pure Willow live &amp; low priority cleanup</span
+              >
+            </div>
+            <div class="week-prog">
+              <div class="wbar-out">
+                <div class="wbar-in" id="wb-w6" style="width: 0%"></div>
+              </div>
+              <span class="wpct" id="wp-w6">0%</span>
+            </div>
+          </div>
+          <div class="day-row off-row">
+            <div class="day-info off-d">
+              <span class="dname">Sun</span><span class="dnum">10</span>
+            </div>
+            <div class="day-tasks off-t">
+              <span class="off-text">OFF — Sunday</span>
+            </div>
+          </div>
+          <div class="day-row">
+            <div class="day-info">
+              <span class="dname">Mon</span><span class="dnum">11</span>
+            </div>
+            <div class="day-tasks">
+              <label class="tl dl"
+                ><input type="checkbox" data-week="w6" data-pri="m" />
+                <div class="cb-zone">
+                  <div class="cb-box"><div class="cb-tick"></div></div>
+                </div>
+                <span class="tt"
+                  >DEADLINE: Pure Willow bats listing LIVE</span
+                ></label
+              >
+              <label class="tl dl"
+                ><input type="checkbox" data-week="w6" data-pri="m" />
+                <div class="cb-zone">
+                  <div class="cb-box"><div class="cb-tick"></div></div>
+                </div>
+                <span class="tt"
+                  >DEADLINE: Kids bats giveaway fully fixed</span
+                ></label
+              >
+              <label class="tl l"
+                ><input type="checkbox" data-week="w6" data-pri="l" />
+                <div class="cb-zone">
+                  <div class="cb-box"><div class="cb-tick"></div></div>
+                </div>
+                <span class="tt"
+                  >Amazon brand restructure — audit current brand store</span
+                ></label
+              >
+            </div>
+          </div>
+          <div class="day-row">
+            <div class="day-info">
+              <span class="dname">Tue</span><span class="dnum">12</span>
+            </div>
+            <div class="day-tasks">
+              <label class="tl l"
+                ><input type="checkbox" data-week="w6" data-pri="l" />
+                <div class="cb-zone">
+                  <div class="cb-box"><div class="cb-tick"></div></div>
+                </div>
+                <span class="tt"
+                  >Amazon brand restructure — plan new categories &amp;
+                  content</span
+                ></label
+              >
+              <label class="tl l"
+                ><input type="checkbox" data-week="w6" data-pri="l" />
+                <div class="cb-zone">
+                  <div class="cb-box"><div class="cb-tick"></div></div>
+                </div>
+                <span class="tt"
+                  >Flipkart re-check — audit listings, images, pricing
+                  accuracy</span
+                ></label
+              >
+            </div>
+          </div>
+          <div class="day-row">
+            <div class="day-info">
+              <span class="dname">Wed</span><span class="dnum">13</span>
+            </div>
+            <div class="day-tasks">
+              <label class="tl l"
+                ><input type="checkbox" data-week="w6" data-pri="l" />
+                <div class="cb-zone">
+                  <div class="cb-box"><div class="cb-tick"></div></div>
+                </div>
+                <span class="tt"
+                  >Amazon brand restructure — implement updates (banners,
+                  copy)</span
+                ></label
+              >
+              <label class="tl l"
+                ><input type="checkbox" data-week="w6" data-pri="l" />
+                <div class="cb-zone">
+                  <div class="cb-box"><div class="cb-tick"></div></div>
+                </div>
+                <span class="tt"
+                  >Flipkart re-check — fix all flagged issues</span
+                ></label
+              >
+              <label class="tl dl"
+                ><input type="checkbox" data-week="w6" data-pri="h" />
+                <div class="cb-zone">
+                  <div class="cb-box"><div class="cb-tick"></div></div>
+                </div>
+                <span class="tt"
+                  >DEADLINE: Academies list + full calling plan complete</span
+                ></label
+              >
+            </div>
+          </div>
+          <div class="day-row">
+            <div class="day-info">
+              <span class="dname">Thu</span><span class="dnum">14</span>
+            </div>
+            <div class="day-tasks">
+              <label class="tl l"
+                ><input type="checkbox" data-week="w6" data-pri="l" />
+                <div class="cb-zone">
+                  <div class="cb-box"><div class="cb-tick"></div></div>
+                </div>
+                <span class="tt"
+                  >Google page — add missing images &amp; product details</span
+                ></label
+              >
+              <label class="tl l"
+                ><input type="checkbox" data-week="w6" data-pri="l" />
+                <div class="cb-zone">
+                  <div class="cb-box"><div class="cb-tick"></div></div>
+                </div>
+                <span class="tt"
+                  >Amazon brand restructure — final review &amp; tweaks</span
+                ></label
+              >
+            </div>
+          </div>
+          <div class="day-row">
+            <div class="day-info">
+              <span class="dname">Fri</span><span class="dnum">15</span>
+            </div>
+            <div class="day-tasks">
+              <label class="tl l"
+                ><input type="checkbox" data-week="w6" data-pri="l" />
+                <div class="cb-zone">
+                  <div class="cb-box"><div class="cb-tick"></div></div>
+                </div>
+                <span class="tt"
+                  >Google page — fill all missing info &amp; verify
+                  accuracy</span
+                ></label
+              >
+              <label class="tl dl"
+                ><input type="checkbox" data-week="w6" data-pri="l" />
+                <div class="cb-zone">
+                  <div class="cb-box"><div class="cb-tick"></div></div>
+                </div>
+                <span class="tt"
+                  >DEADLINE: Flipkart re-check complete</span
+                ></label
+              >
+            </div>
+          </div>
+          <div class="day-row">
+            <div class="day-info">
+              <span class="dname">Sat</span><span class="dnum">16</span>
+            </div>
+            <div class="day-tasks">
+              <label class="tl l"
+                ><input type="checkbox" data-week="w6" data-pri="l" />
+                <div class="cb-zone">
+                  <div class="cb-box"><div class="cb-tick"></div></div>
+                </div>
+                <span class="tt"
+                  >Google page — final review &amp; publish all updates</span
+                ></label
+              >
+            </div>
+          </div>
+        </div>
+
+        <!-- W7 -->
+        <div class="week" data-week="w7">
+          <div class="week-hdr">
+            <div class="week-hdr-left">
+              <span class="week-title">Week 7 — May 17–23</span
+              ><span class="week-theme"
+                >Final wrap-up, review &amp; progress report</span
+              >
+            </div>
+            <div class="week-prog">
+              <div class="wbar-out">
+                <div class="wbar-in" id="wb-w7" style="width: 0%"></div>
+              </div>
+              <span class="wpct" id="wp-w7">0%</span>
+            </div>
+          </div>
+          <div class="day-row off-row">
+            <div class="day-info off-d">
+              <span class="dname">Sun</span><span class="dnum">17</span>
+            </div>
+            <div class="day-tasks off-t">
+              <span class="off-text">OFF — Sunday</span>
+            </div>
+          </div>
+          <div class="day-row">
+            <div class="day-info">
+              <span class="dname">Mon</span><span class="dnum">18</span>
+            </div>
+            <div class="day-tasks">
+              <label class="tl dl"
+                ><input type="checkbox" data-week="w7" data-pri="l" />
+                <div class="cb-zone">
+                  <div class="cb-box"><div class="cb-tick"></div></div>
+                </div>
+                <span class="tt"
+                  >DEADLINE: Amazon brand restructure complete</span
+                ></label
+              >
+              <label class="tl dl"
+                ><input type="checkbox" data-week="w7" data-pri="l" />
+                <div class="cb-zone">
+                  <div class="cb-box"><div class="cb-tick"></div></div>
+                </div>
+                <span class="tt"
+                  >DEADLINE: Google page fully complete</span
+                ></label
+              >
+            </div>
+          </div>
+          <div class="day-row">
+            <div class="day-info">
+              <span class="dname">Tue</span><span class="dnum">19</span>
+            </div>
+            <div class="day-tasks">
+              <label class="tl m"
+                ><input type="checkbox" data-week="w7" data-pri="m" />
+                <div class="cb-zone">
+                  <div class="cb-box"><div class="cb-tick"></div></div>
+                </div>
+                <span class="tt"
+                  >Review: sales recovery — check if metrics are improving</span
+                ></label
+              >
+              <label class="tl m"
+                ><input type="checkbox" data-week="w7" data-pri="m" />
+                <div class="cb-zone">
+                  <div class="cb-box"><div class="cb-tick"></div></div>
+                </div>
+                <span class="tt"
+                  >Review: digital marketing — track early results from
+                  strategy</span
+                ></label
+              >
+            </div>
+          </div>
+          <div class="day-row">
+            <div class="day-info">
+              <span class="dname">Wed</span><span class="dnum">20</span>
+            </div>
+            <div class="day-tasks">
+              <label class="tl m"
+                ><input type="checkbox" data-week="w7" data-pri="m" />
+                <div class="cb-zone">
+                  <div class="cb-box"><div class="cb-tick"></div></div>
+                </div>
+                <span class="tt"
+                  >Buffer — clear any pending/overflow tasks from previous
+                  weeks</span
+                ></label
+              >
+            </div>
+          </div>
+          <div class="day-row">
+            <div class="day-info">
+              <span class="dname">Thu</span><span class="dnum">21</span>
+            </div>
+            <div class="day-tasks">
+              <label class="tl m"
+                ><input type="checkbox" data-week="w7" data-pri="m" />
+                <div class="cb-zone">
+                  <div class="cb-box"><div class="cb-tick"></div></div>
+                </div>
+                <span class="tt"
+                  >Final review meeting — all platforms, listings &amp;
+                  campaigns</span
+                ></label
+              >
+            </div>
+          </div>
+          <div class="day-row">
+            <div class="day-info">
+              <span class="dname">Fri</span><span class="dnum">22</span>
+            </div>
+            <div class="day-tasks">
+              <label class="tl m"
+                ><input type="checkbox" data-week="w7" data-pri="m" />
+                <div class="cb-zone">
+                  <div class="cb-box"><div class="cb-tick"></div></div>
+                </div>
+                <span class="tt"
+                  >Compile overall progress report — share with
+                  stakeholders</span
+                ></label
+              >
+            </div>
+          </div>
+          <div class="day-row off-row">
+            <div class="day-info off-d">
+              <span class="dname">Sat</span><span class="dnum">23</span>
+            </div>
+            <div class="day-tasks off-t">
+              <span class="off-text">OFF — 2nd Saturday</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- DEADLINE TABLE -->
+      <div class="dl-section">
+        <h2>Major Deadlines Summary</h2>
+        <table class="dl-table">
+          <thead>
+            <tr>
+              <th>Date</th>
+              <th>Deliverable</th>
+              <th>Priority</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="d-date">Apr 17</td>
+              <td class="d-task">Bats &amp; ball stock update complete</td>
+              <td><span class="d-pri h">High</span></td>
+            </tr>
+            <tr>
+              <td class="d-date">Apr 17</td>
+              <td class="d-task">Sales recovery strategy finalized</td>
+              <td><span class="d-pri h">High</span></td>
+            </tr>
+            <tr>
+              <td class="d-date">Apr 20</td>
+              <td class="d-task">Influencer Excel list complete</td>
+              <td><span class="d-pri h">High</span></td>
+            </tr>
+            <tr>
+              <td class="d-date">Apr 23</td>
+              <td class="d-task">21-item giveaway campaign LIVE</td>
+              <td><span class="d-pri h">High</span></td>
+            </tr>
+            <tr>
+              <td class="d-date">Apr 29</td>
+              <td class="d-task">Engraving content finalized</td>
+              <td><span class="d-pri h">High</span></td>
+            </tr>
+            <tr>
+              <td class="d-date">May 1</td>
+              <td class="d-task">All engraved bat listings LIVE</td>
+              <td><span class="d-pri h">High</span></td>
+            </tr>
+            <tr>
+              <td class="d-date">May 4</td>
+              <td class="d-task">All 3 bat series listed &amp; launched</td>
+              <td><span class="d-pri h">High</span></td>
+            </tr>
+            <tr>
+              <td class="d-date">May 7</td>
+              <td class="d-task">
+                Digital marketing improvement strategy approved
+              </td>
+              <td><span class="d-pri m">Moderate</span></td>
+            </tr>
+            <tr>
+              <td class="d-date">May 8</td>
+              <td class="d-task">All pending images complete &amp; uploaded</td>
+              <td><span class="d-pri m">Moderate</span></td>
+            </tr>
+            <tr>
+              <td class="d-date">May 11</td>
+              <td class="d-task">
+                Pure Willow bats listing LIVE + kids giveaway fixed
+              </td>
+              <td><span class="d-pri m">Moderate</span></td>
+            </tr>
+            <tr>
+              <td class="d-date">May 13</td>
+              <td class="d-task">
+                Academies list + full calling plan complete
+              </td>
+              <td><span class="d-pri h">High</span></td>
+            </tr>
+            <tr>
+              <td class="d-date">May 15</td>
+              <td class="d-task">Flipkart re-check complete</td>
+              <td><span class="d-pri l">Low</span></td>
+            </tr>
+            <tr>
+              <td class="d-date">May 18</td>
+              <td class="d-task">
+                Amazon brand restructure &amp; Google page fully complete
+              </td>
+              <td><span class="d-pri l">Low</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="footer">
+        <span
+          >Generated April 2026 · Cricket Brand Project Execution Plan ·
+          Progress saves automatically in your browser</span
+        >
+      </div>
+    </div>
+
+    <script>
+      const LEGACY_DONE_STORE = "cal2026_v2";
+      const TASKS_STORE = "cal2026_tasks_v1";
+      const DONE_STORE = "cal2026_done_v1";
+      const MIGRATED_FLAG = "cal2026_migrated_v1";
+
+      const weekPctState = new Map();
+      let lastOverallPct = null;
+
+      const MONTHS = [
+        "Jan",
+        "Feb",
+        "Mar",
+        "Apr",
+        "May",
+        "Jun",
+        "Jul",
+        "Aug",
+        "Sep",
+        "Oct",
+        "Nov",
+        "Dec",
+      ];
+      const MONTH_NUM = {
+        January: 1,
+        February: 2,
+        March: 3,
+        April: 4,
+        May: 5,
+        June: 6,
+        July: 7,
+        August: 8,
+        September: 9,
+        October: 10,
+        November: 11,
+        December: 12,
+      };
+
+      function pad2(n) {
+        return String(n).padStart(2, "0");
+      }
+
+      function parseIsoDate(s) {
+        if (!/^\d{4}-\d{2}-\d{2}$/.test(s)) return null;
+        const [y, m, d] = s.split("-").map(Number);
+        const dt = new Date(Date.UTC(y, m - 1, d));
+        if (
+          dt.getUTCFullYear() !== y ||
+          dt.getUTCMonth() !== m - 1 ||
+          dt.getUTCDate() !== d
+        )
+          return null;
+        return dt;
+      }
+
+      function formatShort(iso) {
+        const dt = parseIsoDate(iso);
+        if (!dt) return iso;
+        return `${MONTHS[dt.getUTCMonth()]} ${dt.getUTCDate()}`;
+      }
+
+      function getRowIsoDate(row) {
+        const monthLabel = row
+          .closest(".month-sec")
+          ?.querySelector(".month-name")
+          ?.textContent?.trim();
+        if (!monthLabel) return null;
+        const parts = monthLabel.split(/\s+/);
+        const monthName = parts[0];
+        const year = Number(parts[1]);
+        const month = MONTH_NUM[monthName];
+        const day = Number(row.querySelector(".dnum")?.textContent?.trim());
+        if (!month || !year || !day) return null;
+        return `${year}-${pad2(month)}-${pad2(day)}`;
+      }
+
+      function buildDayIndex() {
+        const index = new Map();
+        document.querySelectorAll(".day-row").forEach((row) => {
+          if (row.classList.contains("off-row")) return;
+          const iso = getRowIsoDate(row);
+          const tasksEl = row.querySelector(".day-tasks");
+          const weekId = row.closest(".week")?.dataset?.week || null;
+          if (!iso || !tasksEl) return;
+          index.set(iso, { tasksEl, weekId });
+        });
+        return index;
+      }
+
+      function safeJsonParse(raw, fallback) {
+        try {
+          return JSON.parse(raw);
+        } catch {
+          return fallback;
+        }
+      }
+
+      function loadTasks() {
+        const raw = localStorage.getItem(TASKS_STORE);
+        const parsed = safeJsonParse(raw || "", null);
+        if (!Array.isArray(parsed)) return null;
+        return parsed;
+      }
+
+      function saveTasks(tasks) {
+        localStorage.setItem(TASKS_STORE, JSON.stringify(tasks));
+      }
+
+      function loadDone() {
+        const raw = localStorage.getItem(DONE_STORE);
+        const parsed = safeJsonParse(raw || "", {});
+        return parsed && typeof parsed === "object" ? parsed : {};
+      }
+
+      function saveDone(doneMap) {
+        localStorage.setItem(DONE_STORE, JSON.stringify(doneMap));
+      }
+
+      function applyLegacyDoneToDomCheckboxes() {
+        const cbs = document.querySelectorAll("input[type=checkbox]");
+        cbs.forEach((cb, i) => (cb.id = "cb" + i));
+        const raw = localStorage.getItem(LEGACY_DONE_STORE);
+        if (!raw) return;
+        const legacy = safeJsonParse(raw, {});
+        cbs.forEach((cb) => {
+          if (legacy?.[cb.id]) {
+            cb.checked = true;
+            cb.closest(".tl")?.classList.add("done");
+          }
+        });
+      }
+
+      function bootstrapFromDom(dayIndex) {
+        const tasks = [];
+        const doneMap = {};
+
+        let i = 0;
+        document.querySelectorAll(".day-row").forEach((row) => {
+          if (row.classList.contains("off-row")) return;
+          const iso = getRowIsoDate(row);
+          if (!iso) return;
+          row.querySelectorAll("label.tl").forEach((pill) => {
+            const input = pill.querySelector("input[type=checkbox]");
+            const text = pill.querySelector(".tt")?.textContent?.trim() || "";
+            const pri = input?.dataset?.pri || "m";
+            const tag = pill.classList.contains("dl") ? "dl" : pri;
+            const id = "t" + i++;
+
+            tasks.push({ id, text, pri, tag, start: iso, end: iso });
+            doneMap[id] = Boolean(input?.checked);
+          });
+        });
+
+        // Only keep tasks that have a valid start day in this calendar
+        const filtered = tasks.filter((t) => dayIndex.has(t.start));
+        const filteredDone = {};
+        filtered.forEach((t) => (filteredDone[t.id] = doneMap[t.id]));
+        return { tasks: filtered, doneMap: filteredDone };
+      }
+
+      function clearRenderedTasks(dayIndex) {
+        for (const { tasksEl } of dayIndex.values()) {
+          tasksEl.innerHTML = "";
+        }
+      }
+
+      function createTaskPill(task, checked, dayIndex, tasks, doneMap) {
+        const label = document.createElement("label");
+        label.className = `tl ${task.tag}`;
+        label.dataset.taskId = task.id;
+        label.title = "Right-click to reschedule";
+
+        const input = document.createElement("input");
+        input.type = "checkbox";
+        input.dataset.pri = task.pri;
+
+        const startWeekId = dayIndex.get(task.start)?.weekId;
+        if (startWeekId) input.dataset.week = startWeekId;
+
+        if (checked) {
+          input.checked = true;
+          label.classList.add("done");
+        }
+
+        const cbZone = document.createElement("div");
+        cbZone.className = "cb-zone";
+
+        const cbBox = document.createElement("div");
+        cbBox.className = "cb-box";
+
+        const cbTick = document.createElement("div");
+        cbTick.className = "cb-tick";
+
+        cbBox.appendChild(cbTick);
+        cbZone.appendChild(cbBox);
+
+        const tt = document.createElement("span");
+        tt.className = "tt";
+        tt.textContent = task.text;
+
+        if (task.end && task.end !== task.start) {
+          const range = document.createElement("span");
+          range.className = "trange";
+          range.textContent = `→ ${formatShort(task.end)}`;
+          tt.appendChild(range);
+        }
+
+        label.appendChild(input);
+        label.appendChild(cbZone);
+        label.appendChild(tt);
+
+        input.addEventListener("change", () => {
+          doneMap[task.id] = input.checked;
+          label.classList.toggle("done", input.checked);
+          if (input.checked) {
+            label.classList.remove("just-done");
+            void label.offsetWidth;
+            label.classList.add("just-done");
+            setTimeout(() => label.classList.remove("just-done"), 600);
+          }
+          saveDone(doneMap);
+          updateProgress(tasks, doneMap, dayIndex);
+        });
+
+        // Reschedule: right-click (context menu)
+        label.addEventListener("contextmenu", (e) => {
+          e.preventDefault();
+          editSchedule(task.id, tasks, doneMap, dayIndex);
+        });
+
+        return label;
+      }
+
+      function render(tasks, doneMap, dayIndex) {
+        clearRenderedTasks(dayIndex);
+        tasks.forEach((task) => {
+          const slot = dayIndex.get(task.start);
+          if (!slot) return;
+          const pill = createTaskPill(
+            task,
+            Boolean(doneMap[task.id]),
+            dayIndex,
+            tasks,
+            doneMap,
+          );
+          slot.tasksEl.appendChild(pill);
+        });
+        updateProgress(tasks, doneMap, dayIndex);
+      }
+
+      function editSchedule(taskId, tasks, doneMap, dayIndex) {
+        const t = tasks.find((x) => x.id === taskId);
+        if (!t) return;
+
+        const startIn = prompt(
+          "Start date (YYYY-MM-DD) — this calendar supports Apr 13–May 23, 2026:",
+          t.start,
+        );
+        if (startIn === null) return;
+        const start = startIn.trim();
+        const startDt = parseIsoDate(start);
+        if (!startDt || !dayIndex.has(start)) {
+          alert(
+            "Invalid or unsupported start date. Please choose a date visible in this calendar (Apr 13–May 23, 2026).",
+          );
+          return;
+        }
+
+        const endIn = prompt(
+          "End date (YYYY-MM-DD). Leave blank to make it a single-day task:",
+          t.end || start,
+        );
+        if (endIn === null) return;
+        const end = (endIn.trim() || start).trim();
+        const endDt = parseIsoDate(end);
+        if (!endDt) {
+          alert("Invalid end date. Use YYYY-MM-DD.");
+          return;
+        }
+        if (endDt.getTime() < startDt.getTime()) {
+          alert("End date must be the same as or after the start date.");
+          return;
+        }
+
+        t.start = start;
+        t.end = end;
+        saveTasks(tasks);
+        render(tasks, doneMap, dayIndex);
+      }
+
+      function updateProgress(tasks, doneMap, dayIndex) {
+        const getWeekIdForTask = (task) => dayIndex.get(task.start)?.weekId;
+
+        // per week
+        document.querySelectorAll(".week").forEach((w) => {
+          const wid = w.dataset.week;
+          const weekTasks = tasks.filter((t) => getWeekIdForTask(t) === wid);
+          const total = weekTasks.length;
+          const done = weekTasks.filter((t) => Boolean(doneMap[t.id])).length;
+          const pct = total ? Math.round((done / total) * 100) : 0;
+
+          const prevPct = weekPctState.get(wid);
+          weekPctState.set(wid, pct);
+
+          const bar = document.getElementById("wb-" + wid);
+          const lbl = document.getElementById("wp-" + wid);
+          if (bar) bar.style.width = pct + "%";
+          if (lbl) lbl.textContent = pct + "%";
+          if (bar)
+            bar.style.background =
+              pct === 100 ? "linear-gradient(90deg,#34d399,#059669)" : "";
+
+          if (prevPct !== undefined && prevPct < 100 && pct === 100) {
+            w.classList.remove("complete-flash");
+            void w.offsetWidth;
+            w.classList.add("complete-flash");
+          }
+        });
+
+        // overall
+        const total = tasks.length;
+        const done = tasks.filter((t) => Boolean(doneMap[t.id])).length;
+        const pct = total ? Math.round((done / total) * 100) : 0;
+        document.getElementById("overall-bar").style.width = pct + "%";
+        document.getElementById("overall-pct").textContent = pct + "%";
+        document.getElementById("done-count").textContent =
+          done + " / " + total + " tasks done";
+
+        const hTasks = tasks.filter((t) => t.pri === "h");
+        const mTasks = tasks.filter((t) => t.pri === "m");
+        const lTasks = tasks.filter((t) => t.pri === "l");
+        document.getElementById("high-done").textContent =
+          hTasks.filter((t) => Boolean(doneMap[t.id])).length +
+          "/" +
+          hTasks.length +
+          " High";
+        document.getElementById("mod-done").textContent =
+          mTasks.filter((t) => Boolean(doneMap[t.id])).length +
+          "/" +
+          mTasks.length +
+          " Moderate";
+        document.getElementById("low-done").textContent =
+          lTasks.filter((t) => Boolean(doneMap[t.id])).length +
+          "/" +
+          lTasks.length +
+          " Low";
+
+        if (lastOverallPct !== null && lastOverallPct < 100 && pct === 100)
+          celebrate();
+        lastOverallPct = pct;
+      }
+
+      function celebrate() {
+        const b = document.getElementById("burst");
+        b.classList.remove("show");
+        void b.offsetWidth;
+        b.classList.add("show");
+        setTimeout(() => b.classList.remove("show"), 1200);
+      }
+
+      window.resetAll = function () {
+        if (!confirm("Reset all checkboxes? Your progress will be cleared."))
+          return;
+        const doneMap = loadDone();
+        Object.keys(doneMap).forEach((k) => (doneMap[k] = false));
+        saveDone(doneMap);
+        // Re-render with current tasks
+        const dayIndex = buildDayIndex();
+        const tasks = loadTasks() || [];
+        render(tasks, doneMap, dayIndex);
+      };
+
+      // INIT
+      const dayIndex = buildDayIndex();
+
+      // If this is the first run after upgrading the script, migrate checkbox state from legacy store.
+      if (
+        !localStorage.getItem(MIGRATED_FLAG) &&
+        !localStorage.getItem(DONE_STORE)
+      ) {
+        applyLegacyDoneToDomCheckboxes();
+      }
+
+      let tasks = loadTasks();
+      let doneMap = loadDone();
+
+      if (!tasks) {
+        const boot = bootstrapFromDom(dayIndex);
+        tasks = boot.tasks;
+        doneMap = Object.keys(doneMap).length ? doneMap : boot.doneMap;
+        saveTasks(tasks);
+        saveDone(doneMap);
+        localStorage.setItem(MIGRATED_FLAG, "1");
+      }
+
+      // Render from stores (source of truth)
+      render(tasks, doneMap, dayIndex);
+    </script>
+    <script type="module" src="/main.js"></script>
+  </body>
+</html>
