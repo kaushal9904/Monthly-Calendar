@@ -245,12 +245,21 @@
                   review</span
                 ></label
               >
-              <label class="tl h"
-                ><input type="checkbox" data-week="w1" data-pri="h" />
-                <div class="cb-zone">
-                  <div class="cb-box"><div class="cb-tick"></div></div>
-                </div>
-                <script src="app.js" defer></script>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ══ MAY ══ -->
+      <div class="month-sec">
+        <div class="month-label">
+          <div
+            class="month-name"
+            style="
+              background: linear-gradient(90deg, #a78bfa, #6c63ff);
+              -webkit-background-clip: text;
+              -webkit-text-fill-color: transparent;
+              background-clip: text;
             "
           >
             May 2026
@@ -931,7 +940,7 @@
       </div>
     </div>
 
-    <script>
+    <script type="text/plain" data-disabled="true">
       const LEGACY_DONE_STORE = "cal2026_v2";
       const TASKS_STORE = "cal2026_tasks_v1";
       const DONE_STORE = "cal2026_done_v1";
@@ -1329,6 +1338,6 @@
       // Render from stores (source of truth)
       render(tasks, doneMap, dayIndex);
     </script>
-    <script type="module" src="/main.js"></script>
+    <script type="module" src="/app.js"></script>
   </body>
 </html>
