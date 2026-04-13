@@ -1,28 +1,27 @@
-import { initializeApp } from "firebase/app";
-import { getFirestore, doc, setDoc } from "firebase/firestore";
+import { doc, setDoc, onSnapshot } from "firebase/firestore";
 
-const firebaseConfig = {
-  apiKey: "AIzaSyDS3wMI446kdr0AvH8UFkFnnuVSyV6d0-Q",
-  authDomain: "calendar-app-3ff19.firebaseapp.com",
-  projectId: "calendar-app-3ff19",
-  storageBucket: "calendar-app-3ff19.firebasestorage.app",
-  messagingSenderId: "402960003673",
-  appId: "1:402960003673:web:fbe2180b583f6cecbd3748"
-};
+// Get all checkboxes
+const checkboxes = document.querySelectorAll('input[type="checkbox"]');
 
-const app = initializeApp(firebaseConfig);
-const db = getFirestore(app);
+checkboxes.forEach((checkbox) => {
+  const week = checkbox.dataset.week;
+  const pri = checkbox.dataset.pri;
 
-// ✅ FIXED TEST FUNCTION
-async function testFirebase() {
-  try {
-    await setDoc(doc(db, "test", "demo"), {
-      working: true
+  // unique id
+  const taskId = `${week}-${pri}`;
+  const taskRef = doc(db, "tasks", taskId);
+
+  // 🔥 SAVE DATA
+  checkbox.addEventListener("change", async () => {
+    await setDoc(taskRef, {
+      completed: checkbox.checked,
     });
-    console.log("✅ Data sent to Firebase");
-  } catch (error) {
-    console.error("❌ Error:", error);
-  }
-}
+  });
 
-testFirebase();
+  // 🔥 REALTIME SYNC
+  onSnapshot(taskRef, (docSnap) => {
+    if (docSnap.exists()) {
+      checkbox.checked = docSnap.data().completed;
+    }
+  });
+});
