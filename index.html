@@ -13,10 +13,33 @@
   <body>
     <div class="burst" id="burst">🎉</div>
 
-    <div class="container">
+    <div class="auth-screen" id="auth-screen">
+      <div class="auth-card">
+        <div class="auth-brand">Drakon Sports</div>
+        <h2>Sign in to continue</h2>
+        <p>Use one of the approved login providers to open your tasks page.</p>
+        <div class="auth-actions">
+          <button class="auth-btn auth-google" id="login-google-btn" type="button">
+            Continue with Google
+          </button>
+          <button class="auth-btn auth-github" id="login-github-btn" type="button">
+            Continue with GitHub
+          </button>
+        </div>
+        <p class="auth-error" id="auth-error" role="status" aria-live="polite"></p>
+      </div>
+    </div>
+
+    <div class="container" id="tasks-page" hidden>
       <div class="header">
         <div class="brand">Drakon Sports</div>
         <div class="eyebrow">Project Execution Plan</div>
+        <div class="session-bar">
+          <span id="session-user"></span>
+          <button class="session-logout-btn" id="logout-btn" type="button">
+            Log out
+          </button>
+        </div>
         <h1>April &amp; May 2026</h1>
         <p class="header-sub">
           Cricket brand task calendar — check off tasks as you go. Progress

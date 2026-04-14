@@ -1,4 +1,28 @@
+import { initializeApp } from "firebase/app";
+import {
+  getAuth,
+  onAuthStateChanged,
+  signInWithPopup,
+  signOut,
+  GoogleAuthProvider,
+  GithubAuthProvider,
+} from "firebase/auth";
+
 (() => {
+  const firebaseConfig = {
+    apiKey: "AIzaSyDS3wMI446kdr0AvH8UFkFnnuVSyV6d0-Q",
+    authDomain: "calendar-app-3ff19.firebaseapp.com",
+    projectId: "calendar-app-3ff19",
+    storageBucket: "calendar-app-3ff19.appspot.com",
+    messagingSenderId: "402960003673",
+    appId: "1:402960003673:web:fbe2180b583f6cecbd3748",
+  };
+
+  const firebaseApp = initializeApp(firebaseConfig);
+  const auth = getAuth(firebaseApp);
+  const googleProvider = new GoogleAuthProvider();
+  const githubProvider = new GithubAuthProvider();
+
   const LEGACY_DONE_STORE = "cal2026_v2";
   const TASKS_STORE = "cal2026_tasks_v1";
   const DONE_STORE = "cal2026_done_v1";
@@ -59,6 +83,65 @@
   let tasks = null;
   let doneMap = null;
   let idCounter = 0;
+  let appInitialized = false;
+
+  function setAuthError(message) {
+    const authError = document.getElementById("auth-error");
+    if (!authError) return;
+    authError.textContent = message || "";
+  }
+
+  function showAuthOnly() {
+    const authScreen = document.getElementById("auth-screen");
+    const tasksPage = document.getElementById("tasks-page");
+    if (authScreen) authScreen.hidden = false;
+    if (tasksPage) tasksPage.hidden = true;
+  }
+
+  function showTasksForUser(user) {
+    const authScreen = document.getElementById("auth-screen");
+    const tasksPage = document.getElementById("tasks-page");
+    const sessionUser = document.getElementById("session-user");
+    if (authScreen) authScreen.hidden = true;
+    if (tasksPage) tasksPage.hidden = false;
+    if (sessionUser) {
+      sessionUser.textContent = user?.displayName || user?.email || "Signed in";
+    }
+  }
+
+  async function handleProviderLogin(provider) {
+    setAuthError("");
+    try {
+      await signInWithPopup(auth, provider);
+    } catch (error) {
+      setAuthError(error?.message || "Login failed. Please try again.");
+    }
+  }
+
+  function setupAuthGate() {
+    const googleBtn = document.getElementById("login-google-btn");
+    const githubBtn = document.getElementById("login-github-btn");
+    const logoutBtn = document.getElementById("logout-btn");
+
+    googleBtn?.addEventListener("click", () => handleProviderLogin(googleProvider));
+    githubBtn?.addEventListener("click", () => handleProviderLogin(githubProvider));
+    logoutBtn?.addEventListener("click", async () => {
+      await signOut(auth);
+    });
+
+    onAuthStateChanged(auth, (user) => {
+      if (!user) {
+        showAuthOnly();
+        return;
+      }
+
+      showTasksForUser(user);
+      if (!appInitialized) {
+        appInitialized = true;
+        init();
+      }
+    });
+  }
 
   function pad2(n) {
     return String(n).padStart(2, "0");
@@ -853,5 +936,5 @@
     };
   }
 
-  init();
+  setupAuthGate();
 })();
