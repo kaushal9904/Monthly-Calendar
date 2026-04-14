@@ -6,6 +6,7 @@ import {
   signOut,
   GoogleAuthProvider,
 } from "firebase/auth";
+import { getFirestore, doc, getDoc, setDoc, serverTimestamp } from "firebase/firestore";
 
 (() => {
   const firebaseConfig = {
@@ -19,6 +20,7 @@ import {
 
   const firebaseApp = initializeApp(firebaseConfig);
   const auth = getAuth(firebaseApp);
+  const db = getFirestore(firebaseApp);
   const googleProvider = new GoogleAuthProvider();
 
   const LEGACY_DONE_STORE = "cal2026_v2";
@@ -110,10 +112,32 @@ import {
   async function handleProviderLogin(provider) {
     setAuthError("");
     try {
-      await signInWithPopup(auth, provider);
+      const result = await signInWithPopup(auth, provider);
+      await upsertUserLogin(result.user);
     } catch (error) {
       setAuthError(error?.message || "Login failed. Please try again.");
     }
+  }
+
+  async function upsertUserLogin(user) {
+    if (!user) return;
+    const userRef = doc(db, "users", user.uid);
+    const snap = await getDoc(userRef);
+
+    const payload = {
+      uid: user.uid,
+      name: user.displayName || "",
+      email: user.email || "",
+      photoURL: user.photoURL || "",
+      provider: user.providerData?.[0]?.providerId || "google.com",
+      lastLoginAt: serverTimestamp(),
+    };
+
+    if (!snap.exists()) {
+      payload.createdAt = serverTimestamp();
+    }
+
+    await setDoc(userRef, payload, { merge: true });
   }
 
   function setupAuthGate() {
@@ -132,6 +156,9 @@ import {
       }
 
       showTasksForUser(user);
+      upsertUserLogin(user).catch((error) => {
+        console.error("Failed to save user login info:", error);
+      });
       if (!appInitialized) {
         appInitialized = true;
         init();
