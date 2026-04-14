@@ -5,7 +5,6 @@ import {
   signInWithPopup,
   signOut,
   GoogleAuthProvider,
-  GithubAuthProvider,
 } from "firebase/auth";
 
 (() => {
@@ -21,7 +20,6 @@ import {
   const firebaseApp = initializeApp(firebaseConfig);
   const auth = getAuth(firebaseApp);
   const googleProvider = new GoogleAuthProvider();
-  const githubProvider = new GithubAuthProvider();
 
   const LEGACY_DONE_STORE = "cal2026_v2";
   const TASKS_STORE = "cal2026_tasks_v1";
@@ -120,11 +118,9 @@ import {
 
   function setupAuthGate() {
     const googleBtn = document.getElementById("login-google-btn");
-    const githubBtn = document.getElementById("login-github-btn");
     const logoutBtn = document.getElementById("logout-btn");
 
     googleBtn?.addEventListener("click", () => handleProviderLogin(googleProvider));
-    githubBtn?.addEventListener("click", () => handleProviderLogin(githubProvider));
     logoutBtn?.addEventListener("click", async () => {
       await signOut(auth);
     });

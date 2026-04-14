@@ -1,7 +1,20 @@
 // 🔥 IMPORTS
+import { signInWithGoogle, saveUser } from "./firebaseAuth.js";
 import { initializeApp } from "firebase/app";
 import { getFirestore, doc, setDoc, onSnapshot } from "firebase/firestore";
 
+
+const handleLogin = async () => {
+  const user = await signInWithGoogle();
+
+  if (user) {
+    await saveUser(user);
+    alert("Login successful!");
+    console.log(user);
+  }
+
+  document.getElementById("googleLogin").addEventListener("click", handleLogin);
+};
 // 🔥 FIREBASE CONFIG (your project)
 const firebaseConfig = {
   apiKey: "AIzaSyDS3wMI446kdr0AvH8UFkFnnuVSyV6d0-Q",
